@@ -4,59 +4,43 @@ PROMPT = """1. Get Word
 4. Exit
 Enter Choice: """
 
-INPUT_GET = 1
-INPUT_ADD = 2
-INPUT_DEL = 3
-INPUT_EXT = 4
+INPUT_EXIT = 4
 
-dictionary = dict()
-
-
-def get_word(word: str) -> None:
-    """prints definition to `word`"""
+def get_word(dictionary: dict) -> None:
+    """prints definition to a given word from `dictionary`"""
+    word = input("Word to get: ")
     if word in dictionary:
         print(f"{word} means {dictionary[word]}")
     else:
         print(f"The word {word} does not exist!")
 
 
-def add_word(word: str, defi: str) -> None:
-    """adds `word` to dictionary with definition `defi`"""
-    dictionary[word] = defi
+def add_word(dictionary: dict) -> None:
+    """adds word to `dictionary` with definition"""
+    word = input("Word to add: ")
+    dictionary[word] = input(f"Meaning of {word}: ")
     print(f"{word}={dictionary[word]} was added.")
 
 
-def del_word(word: str) -> None:
-    """deletes `word` from dictionary"""
+def del_word(dictionary: dict) -> None:
+    """deletes word from `dictionary`"""
+    word = input("Word to delete: ")
     if word in dictionary:
         del dictionary[word]
         print(f"{word} was erased")
     else:
         print(f"Word does not exist.")
 
+COMMANDS = [None, get_word, add_word, del_word]
 
 def main() -> None:
     """run main event loop"""
-
-    running = True
-    while running:
-        inp = input(PROMPT)
+    dictionary = dict()
+    
+    while (inp := input(PROMPT)) != INPUT_EXIT:
+        COMMANDS[int(inp)](dictionary)
         
-        if inp == INPUT_GET:
-            word = input("Word to get: ")
-            get_word(word)
-            
-        elif inp == INPUT_ADD:
-            word = input("Word to add: ")
-            add_word(word, input(f"Meaning of {word}: "))
-            
-        elif inp == INPUT_DEL:
-            word = input("Word to delete: ")
-            del_word(word)
-            
-        elif inp == INPUT_EXT:
-            running = False
-            print("Goodbye!")
+    print("Goodbye!")
 
 
 if __name__ == "__main__":
