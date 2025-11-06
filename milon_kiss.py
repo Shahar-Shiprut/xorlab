@@ -46,7 +46,7 @@ def main() -> None:
     dictionary = dict()
     
     while (inp := int(input(PROMPT))) != Commands.EXT.value:
-        if 1 <= inp <= 4:
+        if inp in Commands:
             COMMANDS[inp](dictionary)
         else:
             print(inp, "is not an option")
