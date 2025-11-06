@@ -1,3 +1,11 @@
+import enum
+
+class Commands(enum.Enum):
+    GET = 1
+    ADD = 2
+    DEL = 3
+    EXT = 4
+
 PROMPT = (
     "1. Get Word"
     "2. Add Word"
@@ -5,8 +13,6 @@ PROMPT = (
     "4. Exit"
     "Enter Choice: "
 )
-
-INPUT_EXIT = 4
 
 def get_word(dictionary: dict) -> None:
     """prints definition to a given word from `dictionary`"""
@@ -39,8 +45,11 @@ def main() -> None:
     """run main event loop"""
     dictionary = dict()
     
-    while (inp := input(PROMPT)) != INPUT_EXIT:
-        COMMANDS[int(inp)](dictionary)
+    while (inp := int(input(PROMPT))) != Commands.EXT.value:
+        if 1 <= inp <= 4:
+            COMMANDS[inp](dictionary)
+        else:
+            print(inp, "is not an option")
         
     print("Goodbye!")
 
