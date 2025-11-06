@@ -9,8 +9,8 @@ def play_submarine() -> None:
     attempts = 0
     while True:
         try:
-            row = int(input("Enter row: "))
-            col = int(input("Enter col: "))
+            row = int(input("הכנס שורה: "))
+            col = int(input("הכנס עמודה: "))
         except ValueError:
             print("Didn't understand the input please try again")
             continue
