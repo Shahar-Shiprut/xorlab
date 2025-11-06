@@ -1,8 +1,10 @@
-PROMPT = """1. Get Word
-2. Add Word
-3. Delete Word
-4. Exit
-Enter Choice: """
+PROMPT = (
+    "1. Get Word"
+    "2. Add Word"
+    "3. Delete Word"
+    "4. Exit"
+    "Enter Choice: "
+)
 
 INPUT_EXIT = 4
 
