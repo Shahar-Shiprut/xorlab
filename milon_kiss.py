@@ -44,9 +44,11 @@ COMMANDS = [None, get_word, add_word, del_word]
 def main() -> None:
     """run main event loop"""
     dictionary = dict()
+
+    command_values = [c.value for c in Commands]
     
     while (inp := int(input(PROMPT))) != Commands.EXT.value:
-        if inp in Commands:
+        if inp in command_values:
             COMMANDS[inp](dictionary)
         else:
             print(inp, "is not an option")
